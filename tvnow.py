@@ -97,10 +97,8 @@ class TvNow:
         r = requests.get(endPoint,headers=headers)
         try: jsName = re.findall(r'<script src="(main\-[A-z0-9]+\.[A-z0-9]+\.js)"', r.text, re.S)[-1]        
         except:
-
             xbmcgui.Dialog().notification('Fehler GetToken', 'JS not found', icon=xbmcgui.NOTIFICATION_ERROR)
-            return "0"
-            
+            return "0"            
         endPoint = baseEndPoint + jsName
         r = requests.get(endPoint,headers=headers)
         m = re.search(r'\.prototype\.getDefaultUserdata=function\(\){return{token:"([A-z0-9.]+)"', r.text)
